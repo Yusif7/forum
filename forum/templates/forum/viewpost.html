@@ -1,0 +1,157 @@
+{% extends 'forum/base.html' %}
+
+
+{% block content %}
+    <div class="container ">
+        <h2 > {{ post.title }}</h2>
+        <br>
+        <p>Дата создания: {{ post.date_created|date:' d.m.Y ' }}</p>
+        <br>
+        <p >{{ post.content|safe }}</p>
+        <br>
+        <hr>
+        <br>
+        {% if not post.date_completed %}
+            <form method="POST" action="{% url 'addcomment' post.id %}">
+                {% csrf_token %}
+                {{ commentForm.as_p }}
+                <button type="submit">Добавить комментарий</button>
+            </form>
+            <br>
+        {% endif %}
+        <h2>Коментарии:</h2>
+        <ul>
+            {% for comment in user_comment %}
+                <li class="comment">
+                        Идентификатор : {{ comment.id }}
+                     <hr>
+                        {{ comment.text }}
+                    <hr>
+                        <p class="comment_author">Автор: {{ comment.author }}<br> Дата: {{ comment.created_date|date:' d.m.Y ' }}</p>
+                    {% if user.id == post.user.id or user.last_name == 'Патриарх' or user.last_name == 'Владыка' or user.last_name == 'Палач' or user.last_name == 'Убийца' or user.last_name == 'Гвардия13'%}
+                        <div class="comment_actions">
+                            <form method="POST" action="{% url 'delete_comment' post.id comment.id  %}">
+                                {% csrf_token %}
+                                <button type="submit">Удалить</button>
+                            </form>
+                        </div>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+        <br>
+        {% if user.id == post.user.id or user.last_name == 'Патриарх' or user.last_name == 'Владыка' or user.last_name == 'Палач'  %}
+            {% for url in urls %}
+                {% if url.previous_url_allposts == url.allposts_url or url.previous_url_owner == url.owner_url or post.important  %}
+                        <div class="post_action">
+                            {% load static %}
+                            <form method="POST" action="{% url 'completepost' post.id %}">
+                                {% csrf_token %}
+                                <button type="submit" class="btn btn-danger">Закрыть</button>
+                            </form>
+                            <br>
+                            <br>
+                            <form method="POST" action="{% url 'deletepost' post.id %}">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-danger">Удалить</button>
+                            </form>
+                            <br>
+                            <br>
+                        </div>
+                        {% if user.id == post.user.id or user.last_name == 'Патриарх' or user.last_name == 'Владыка' %}
+                            <h2>Редактирование поста</h2>
+                            <form method="POST">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <button type="submit" class="btn-warning">Сохранить</button>
+                            </form>
+                        {% endif %}
+                        <br>
+                {% endif %}
+            {% endfor %}
+        {% endif %}
+    </div>
+    <style>
+        .container h2, p {
+            text-align: justify;
+        }
+
+        .container p, li {
+            font-size:18px
+        }
+
+        .container h2{
+            margin-top:7%;
+        }
+
+        #id_important {
+            width: 20px; /* Установите размер чекбокса */
+            height: 20px; /* Установите размер чекбокса */
+        }
+
+        #id_content, #id_title {
+            width:100%
+        }
+
+        .post_action {
+            display: flex;
+            justify-content: space-evenly;
+        }
+
+        .post_action button {
+            font-size:20px;
+        }
+
+        .container ul{
+            list-style-type: none;
+        }
+
+        .comment{
+            margin: 5% auto;;
+            border:1px solid black;
+            padding: 2%;
+        }
+
+        label[for="id_text"] {
+            display: none;
+        }
+
+        #id_text{
+            height: 100px;
+            width: 100%;
+        }
+
+        .comment_author {
+            text-align: end;
+            margin: 0 0 0 0;
+        }
+
+        .comment_actions {
+            display: flex;
+            justify-content: end;
+            margin-top:15px;
+        }
+
+        .comment_actions a {
+            padding-right:10px;
+            text-decoration: none;
+            color:red;
+        }
+        #textInput {
+            width:100%;
+        }
+
+    </style>
+    <script>
+        function showForm() {
+          document.getElementById("myForm").style.display = "block";
+        }
+        function submitForm() {
+          var userInput = document.getElementById("textInput").value;
+          // Делайте что-то с пользовательским вводом, например, отправляйте на сервер
+          console.log("Пользовательский ввод:", userInput);
+          // Очистите форму или скройте ее после отправки
+          document.getElementById("myForm").style.display = "none";
+        }
+    </script>
+{% endblock %}

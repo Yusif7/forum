@@ -1,0 +1,15 @@
+{% extends 'forum/base.html' %}
+
+
+    {% block content %}
+    <div style="position: absolute; top: 30%; left: 40%;">
+        <h1>Войдите в учётную запись</h1>
+        <br>
+        <h2 style="color:red">{{ error }}</h2>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-warning" >Login</button>
+        </form>
+    </div>
+    {% endblock %}

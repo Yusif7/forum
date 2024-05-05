@@ -1,0 +1,256 @@
+{% extends 'forum/base.html' %}
+
+    {% block content %}
+    <div class="container text-center">
+        <h1>Личный кабинет</h1>
+        <br>
+        <p style="font-size:20px">Имя пользователя: {{ user.first_name }}</p>
+        <p style="font-size:20px">Email: {{ user.email }}</p>
+        <p style="font-size:20px">Никнейм в игре: {{ user.username }} </p>
+
+        <p style="font-size:20px">Звание в структуре: {{ user.last_name }}</p>
+        <p style="font-size:20px"><a href="https://mycombats.com/forum.php?topic=615336" target="_blank">Закон клуба</a></p>
+
+        {% if user.last_name == 'Патриарх' %}
+            <div class="accordion"  style="width: 30%; position: absolute; left:35%;">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Доступы учетной записи
+                  </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                      <h4>Все посты</h4>
+                      <strong>Добавление поста</strong>
+                      <br>
+                      <strong>Редактирование поста</strong>
+                      <br>
+                      <strong>Закрытие поста</strong>
+                      <br>
+                      <strong>Удаление поста</strong>
+                      <br>
+                      <strong>Скрытие поста</strong>
+                      <br>
+                      <strong>Чтение поста</strong>
+                      <br>
+                      <br>
+                      <h4>Добавленные посты</h4>
+                      <strong>-</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+        {% elif user.last_name == 'Владыка' %}
+            <div class="accordion"  style="width: 30%; position: absolute; left:35%;">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Доступы учетной записи
+                  </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                      <h4>Все записи</h4>
+                      <strong>Добавление поста</strong>
+                      <br>
+                      <strong>Редактирование поста</strong>
+                      <br>
+                      <strong>Закрытие поста</strong>
+                      <br>
+                      <strong>Удаление поста</strong>
+                      <br>
+                      <strong>Скрытие поста</strong>
+                      <br>
+                      <strong>Чтение поста</strong>
+                      <br>
+                      <br>
+                      <h4>Добавленные посты</h4>
+                      <strong>-</strong>
+                  </div>
+                </div>
+              </div>
+            </div>
+        {% elif user.last_name == 'Палач' %}
+            <div class="accordion"  style="width: 30%; position: absolute; left:35%;">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Доступы учетной записи
+                  </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                      <h4>Все посты</h4>
+                      <strong>Добавление поста</strong>
+                      <br>
+                      <strong>Редактирование поста</strong>
+                      <br>
+                      <strong>Чтение поста</strong>
+                      <br>
+                      <br>
+                      <h4>Добавленные посты</h4>
+                      <strong>Закрытие поста</strong>
+                      <br>
+                      <strong>Скрытие поста</strong>
+                      <br>
+                  </div>
+                </div>
+              </div>
+            </div>
+        {% elif user.last_name == 'Убийца' %}
+            <div class="accordion"  style="width: 30%; position: absolute; left:35%;">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Доступы учетной записи
+                  </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                      <h4>Все посты</h4>
+                      <strong>Добавление поста</strong>
+                      <br>
+                      <strong>Редактирование поста</strong>
+                      <br>
+                      <strong>Чтение поста</strong>
+                      <br>
+                      <br>
+                      <h4>Добавленные посты</h4>
+                      <strong>Закрытие поста</strong>
+                      <br>
+                      <strong>Скрытие поста</strong>
+                      <br>
+                  </div>
+                </div>
+              </div>
+            </div>
+        {% elif user.last_name == 'Гвардеец13' %}
+            <div class="accordion"  style="width: 30%; position: absolute; left:35%;">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Доступы учетной записи
+                  </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                      <h4>Все посты</h4>
+                      <strong>Добавление поста</strong>
+                      <br>
+                      <strong>Редактирование поста</strong>
+                      <br>
+                      <strong>Чтение поста</strong>
+                      <br>
+                      <br>
+                      <h4>Добавленные посты</h4>
+                      <strong>Закрытие поста</strong>
+                      <br>
+                      <strong>Скрытие поста</strong>
+                      <br>
+                  </div>
+                </div>
+              </div>
+            </div>
+        {% elif user.last_name == 'Надсмоторщик' %}
+            <div class="accordion"  style="width: 30%; position: absolute; left:35%;">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Доступы учетной записи
+                  </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                      <h4>Все посты</h4>
+                      <strong>Добавление поста</strong>
+                      <br>
+                      <strong>Редактирование поста</strong>
+                      <br>
+                      <strong>Чтение поста</strong>
+                      <br>
+                      <br>
+                      <h4>Добавленные посты</h4>
+                      <strong>Закрытие поста</strong>
+                      <br>
+                  </div>
+                </div>
+              </div>
+            </div>
+        {% elif user.last_name == 'Каратель' %}
+            <div class="accordion"  style="width: 30%; position: absolute; left:35%;">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Доступы учетной записи
+                  </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                      <h4>Все посты</h4>
+                      <strong>Добавление поста</strong>
+                      <br>
+                      <strong>Редактирование поста</strong>
+                      <br>
+                      <strong>Чтение поста</strong>
+                      <br>
+                      <br>
+                      <h4>Добавленные посты</h4>
+                      <strong>Закрытие поста</strong>
+                      <br>
+                  </div>
+                </div>
+              </div>
+            </div>
+        {% elif user.last_name == 'Ветеран' %}
+            <div class="accordion"  style="width: 30%; position: absolute; left:35%;">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Доступы учетной записи
+                  </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                      <h4>Все посты</h4>
+                      <strong>Чтение поста</strong>
+                      <br>
+                      <br>
+                      <h4>Добавленные посты</h4>
+                      <strong>-</strong>
+                      <br>
+                  </div>
+                </div>
+              </div>
+            </div>
+        {% else %}
+        <div class="accordion"  style="width: 30%; position: absolute; left:35%;">
+              <div class="accordion-item">
+                <h2 class="accordion-header">
+                  <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                    Доступы учетной записи
+                  </button>
+                </h2>
+                <div id="collapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample">
+                  <div class="accordion-body">
+                      <h4>Все посты</h4>
+                      <strong>Чтение поста</strong>
+                      <br>
+                      <br>
+                      <h4>Добавленные посты</h4>
+                      <strong>-</strong>
+                      <br>
+                  </div>
+                </div>
+              </div>
+            </div>
+        {% endif %}
+
+        </div>
+        <style>
+            a {
+                text-decoration:none;
+                color:black;
+            }
+        </style>
+    {% endblock %}

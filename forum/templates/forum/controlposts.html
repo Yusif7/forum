@@ -1,0 +1,53 @@
+{% extends 'forum/base.html' %}
+
+
+    {% block content %}
+    <div class="container test">
+        <h1 class="text-center" style="margin:5% auto;">Важные Посты</h1>
+        <ul>
+            {% for post in posts %}
+                <li>
+                    <a href="{% url 'viewpost' post.id %}">
+                        {% if post.important %}
+                            <div class="allpost_container">
+                                <h4>{{ post.title }}</h4>
+                                    <div class="allpost_info">
+                                        <b><p>Дата создания: {{ post.date_created|date:' d.m.Y ' }}</p></b>
+                                        <b><p>Автор: {{ post.user }}</p></b>
+                                    </div>
+                            </div>
+                        {% endif %}
+                    </a>
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+        <style>
+        a {
+            text-decoration:none;
+            color:black;
+        }
+        .allpost_container {
+            padding:10px;
+            margin:3% auto;
+            border: 2px solid black;
+        }
+        .allpost_info {
+                display: flex;
+                justify-content: space-between;
+                font-size: 20px;
+        }
+        .container ul{
+            list-style-type: none;
+        }
+
+    </style>
+    <script>
+        var listItems = document.querySelectorAll('.test li');
+        listItems.forEach(function(item) {
+          if (item.querySelector('a').innerHTML.trim() === '') {
+            item.remove();
+          }
+        });
+    </script>
+    {% endblock %}

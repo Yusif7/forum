@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tarmans MBK Forum</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+  </head>
+  <body>
+      <nav class="navbar navbar-expand-lg bg-body-tertiary" style="background-color:rgb(219 230 241) !important;">
+      <div class="container">
+      <!-- Пользователь авторизован -->
+    {% if user.is_authenticated %}
+        <a class="navbar-brand" href="{% url 'allposts' %}">FORUM</a>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            {% if user.last_name != '' %}
+              <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                  <li class="nav-item">
+                      <a class="nav-link active" style="color: black; font-size: 20px;" aria-current="page" href="{% url 'allposts' %}">Посты</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link active" style="color: black; font-size: 20px;" aria-current="page" href="{% url 'ownerposts' %}">Мои посты</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link active" style="color: black; font-size: 20px;" aria-current="page" href="{% url 'controlposts' %}">Важные Посты</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" style="color: black; font-size: 20px;" href="{% url 'createpost' %}">Добавить пост</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link" style="color: black; font-size: 20px;" href="{% url 'completedposts' %}">Закрытые посты</a>
+                  </li>
+              </ul >
+            {% endif %}
+              <ul class="navbar-nav mb-2 mb-lg-0" style="padding-top:15px;">
+                  <li class="nav-item">
+                      {% if user.last_name == 'Патриарх' %}
+                      {% load static %}
+                        <p class="nav-link" style="color: black; font-size: 20px;" >Тьма с тобой,
+                            <img src="{% static 'forum/patriarx.gif' %}" alt="" height="18px"> <a href="{% url 'owneruser' %}"><b>{{ user.username }}</b></a> !
+                        </p>
+                      {% elif user.last_name == 'Владыка' %}
+                      <p class="nav-link" style="color: black; font-size: 20px;" >Тьма с тобой,
+                            <img src="{% static 'forum/vladika.gif' %}" alt="" height="18px"> <a href="{% url 'owneruser' %}"><b>{{ user.username }}</b></a> !
+                        </p>
+                      {% elif user.last_name == 'Палач' %}
+                      <p class="nav-link" style="color: black; font-size: 20px;" >Тьма с тобой,
+                            <img src="{% static 'forum/palac.gif' %}" alt="" height="18px"> <a href="{% url 'owneruser' %}"><b>{{ user.username }}</b></a> !
+                        </p>
+                      {% elif user.last_name == 'Гвардеец13' %}
+                      <p class="nav-link" style="color: black; font-size: 20px;" >Тьма с тобой,
+                            <img src="{% static 'forum/gvardeyec.gif' %}" alt="" height="18px"> <a href="{% url 'owneruser' %}"><b>{{ user.username }}</b></a> !
+                        </p>
+                      {% elif user.last_name == 'Убийца' %}
+                      <p class="nav-link" style="color: black; font-size: 20px;" >Тьма с тобой,
+                            <img src="{% static 'forum/ubiyca.gif' %}" alt="" height="18px"> <a href="{% url 'owneruser' %}"><b>{{ user.username }}</b></a> !
+                        </p>
+                      {% elif user.last_name == 'Надсмоторщик' %}
+                      <p class="nav-link" style="color: black; font-size: 20px;" >Тьма с тобой,
+                            <img src="{% static 'forum/smotritel.gif' %}" alt="" height="18px"> <a href="{% url 'owneruser' %}"><b>{{ user.username }}</b></a> !
+                        </p>
+                      {% elif user.last_name == 'Каратель' %}
+                      <p class="nav-link" style="color: black; font-size: 20px;" >Тьма с тобой,
+                            <img src="{% static 'forum/karatel.gif' %}" alt="" height="18px"> <a href="{% url 'owneruser' %}"><b>{{ user.username }}</b></a> !
+                        </p>
+                      {% elif user.last_name == 'Ветеран' %}
+                          <p class="nav-link" style="color: black; font-size: 20px;" >Тьма с тобой,
+                                <img src="{% static 'forum/veteran.gif' %}" alt="" height="18px"> <a href="{% url 'owneruser' %}"><b>{{ user.username }}</b></a> !
+                          </p>
+                      {% elif user.last_name == 'Стажёр' %}
+                          <p class="nav-link" style="color: black; font-size: 20px;" >Тьма с тобой,
+                                <img src="{% static 'forum/stajer.gif' %}" alt="" height="18px"> <a href="{% url 'owneruser' %}"><b>{{ user.username }}</b></a> !
+                          </p>
+                      {% else %}
+                        <p class="nav-link" style="color: black; font-size: 20px;" >Тьма с тобой,
+                                <img src="" alt="" height="18px"> <a href="{% url 'owneruser' %}"><b>{{ user.username }}</b></a> !
+                        </p>
+                      {% endif %}
+                  </li>
+                  <li class="nav-item">
+                      <form action="{% url 'logoutuser' %}" method="POST">
+                          {% csrf_token %}
+                          <button type="submit" class="btn btn-primary" style="font-size: 20px;">Выход</button>
+                      </form>
+                  </li>
+              </ul>
+    {% else %}
+            <!-- Пользователь не авторизован -->
+            <a class="navbar-brand" href="{% url 'home' %}">FORUM</a>
+                <ul class="navbar-nav mb-2 mb-lg-0">
+                    <li class="nav-item">
+                      <a class="nav-link" style="color: black;" href="{% url 'loginuser' %}">Вход</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" style="color: black;" href="{% url 'signupuser' %}">Регистрация</a>
+                    </li>
+                </ul>
+        </div>
+    {% endif %}
+  </div>
+</nav>
+    {% block content %}
+
+    {% endblock %}
+    <style>
+        body {
+            background-color:#f9eeee;
+            font-size:18px;
+        }
+        a {
+            text-decoration:none;
+            color:black;
+        }
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+  </body>
+</html>

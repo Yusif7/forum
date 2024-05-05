@@ -1,0 +1,29 @@
+{% extends 'forum/base.html' %}
+
+    {% block content %}
+    <div class="container " style="margin:10% auto;">
+        <h1 class="text-center ">
+            Для продолжение зарегистрирйтесь или войдите в учётную запись
+        </h1>
+        <div style="display: flex; justify-content: center;">
+            <form style="padding: 5% 20% 5% 20%">
+                <a href="{% url 'signupuser' %}">
+                    <button type="button" class="btn btn-primary" style="font-size:40px">Регистрация</button>
+                </a>
+
+        </form>
+        <form style="padding: 5% 20% 5% 20%">
+            <a href="{% url 'loginuser' %}">
+                <button type="button" class="btn btn-primary" style="font-size:40px">Вход</button>
+            </a>
+
+        </form>
+        </div>
+        <form method="POST" action="{% url 'add_comment_to_post' post.id %}">
+        {% csrf_token %}
+        {{ commentForm.as_p }}
+        <button type="submit">Отправить комментарий</button>
+    </form>
+
+    </div>
+    {% endblock %}

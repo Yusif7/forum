@@ -1,0 +1,29 @@
+{% extends 'forum/base.html' %}
+
+    {% block content %}
+    <div class="container " style="margin:5% auto;">
+        <h1>СОЗДАНИЕ НОВОГО ПОСТА</h1>
+        <br>
+        <br>
+    <h2 style="color:red">{{ error }}</h2>
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-danger" style="width:20%; padding:15px 0; font-size:20px;">Создать пост</button>
+    </form>
+
+    </div>
+    <style>
+        a {
+            text-decoration:none;
+            color:black;
+        }
+        #id_important {
+            width: 20px; /* Установите размер чекбокса */
+            height: 20px; /* Установите размер чекбокса */
+        }
+        #id_content, #id_title {
+            width:100%
+        }
+    </style>
+    {% endblock %}
